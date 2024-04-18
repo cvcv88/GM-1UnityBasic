@@ -3,9 +3,13 @@ using UnityEngine;
 
 public class CSharpProgrammingBasic2 : MonoBehaviour
 {
+	int health1 = 30; // 전역변수(멤버변수) : 함수 바깥에 선언된 변수
+	int level = 5;
+	// 지역변수 : 함수 안에서 선언된 변수
 	private void Start()
 	{
 		int health = 30;
+		int health2 = 30;
 		int mana = 15;
 		bool isBadCondition = health <= 50 && mana <= 20;
 		string condition = isBadCondition ? "나쁨" : "좋음";
@@ -16,6 +20,7 @@ public class CSharpProgrammingBasic2 : MonoBehaviour
 		items.Add("공격력버프");
 
 		string[] monsters = { "슬라임", "사막뱀", " 악마" };
+		int[] monsterLevel = new int[3];
 
 		// 5. 조건문
 		// if : 조건이 true일 때, 로직 실행
@@ -69,8 +74,8 @@ public class CSharpProgrammingBasic2 : MonoBehaviour
 				Debug.Log("독 데미지를 입었습니다. " + health);
 			else
 				Debug.Log("사망하였습니다.");
-			
-			if(health == 10)
+
+			if (health == 10)
 			{
 				Debug.Log("해독제를 사용합니다.");
 				break;
@@ -86,14 +91,48 @@ public class CSharpProgrammingBasic2 : MonoBehaviour
 			Debug.Log("붕대로 치료중... " + health);
 		}
 
-		for(int index = 0; index < monsters.Length; index++)
+		for (int index = 0; index < monsters.Length; index++)
 		{
 			Debug.Log("이 지역에 있는 몬스터(for) : " + monsters[index]);
 		}
 
-		foreach(string monster in monsters)
+		foreach (string monster in monsters)
 		{
 			Debug.Log("이 지역에 있는 몬스터(foreach) : " + monster);
 		}
+
+		health2 = Heal1(health2);
+		Heal2();
+
+		for (int index = 0; index < monsters.Length; index++)
+		{
+			Debug.Log("용사는 " + monsters[index] + "에게 " + Battle(monsterLevel[index]));
+		}
+
+	}
+
+	// 7. 함수 (메소드) : 기능을 편리하게 사용하도록 구성된 영역
+	int Heal1(int currentHealth)
+	{
+		currentHealth += 10;
+		Debug.Log("힐을 받았습니다. " + currentHealth);
+		return currentHealth; // 함수가 값을 반환할 때 사용
+	}
+
+	void Heal2()
+	{
+		health1 += 10;
+		Debug.Log("힐을 받았습니다. " + health1);
+	}
+
+	string Battle(int monsterLevel)
+	{
+		string result;
+		if (level >= monsterLevel)
+			result = "이겼습니다.";
+		else
+			result = "졌습니다.";
+		return result;
 	}
 }
+
