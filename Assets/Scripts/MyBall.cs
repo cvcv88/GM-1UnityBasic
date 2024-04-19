@@ -30,12 +30,19 @@ public class MyBall : MonoBehaviour
 			// rigid.AddForce(Vector3.up * 5, ForceMode.Impulse);
 		// }
 
-		// Vector3 vec = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-		// rigid.AddForce(vec, ForceMode.Impulse);
+		Vector3 vec = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+		rigid.AddForce(vec, ForceMode.Acceleration);
 		// Rigidbody를 이용한 이동은 보다 자연스럽다.
 
 		// 회전력, AddTorque(Vec) : Vec 방향을 축으로 회전력이 생김
-		rigid.AddTorque(Vector3.back);
-		rigid.AddTorque(Vector3.up);
+		// rigid.AddTorque(Vector3.back);
+		// rigid.AddTorque(Vector3.up);
+	}
+
+	// 물리적 충돌 X, 콜라이더끼리 겹쳤느냐 둘 중 하나가 무조건 Trigger여야 함
+	private void OnTriggerStay(Collider other)
+	{
+		if(other.name == "JumpCube")
+			rigid.AddForce(Vector3.up, ForceMode.Impulse);
 	}
 }
