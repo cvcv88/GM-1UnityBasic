@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InputScript : MonoBehaviour
+public class InputScript1 : MonoBehaviour
 {
 	private void Update()
 	{
@@ -32,5 +32,35 @@ public class InputScript : MonoBehaviour
 			Debug.Log("미사일 모으는 중...");
 		if (Input.GetMouseButtonUp(0))
 			Debug.Log("슈퍼 미사일 발사!!");
+
+		// GetButton : Input 버튼 입력을 받으면 true
+		if (Input.GetButtonDown("Jump"))
+			Debug.Log("점프!");
+		if (Input.GetButton("Jump"))
+			Debug.Log("점프 모으는 중...");
+		if (Input.GetButtonUp("Jump"))
+			Debug.Log("슈퍼 점프!!");
+
+
+		if (Input.GetButton("Horizontal"))
+		{
+			Debug.Log("횡 이동 중..." + Input.GetAxis("Horizontal"));
+			// GetAxis : 수평, 수직 버튼 입력을 받으면 float
+		}
+
+		if (Input.GetButton("Vertical"))
+		{
+			Debug.Log("종 이동 중..." + Input.GetAxis("Vertical"));
+		}
+
+		if (Input.GetButton("Horizontal"))
+		{
+			Debug.Log("횡 이동 중..." + Input.GetAxisRaw("Horizontal"));
+		}
+
+		if (Input.GetButton("Vertical"))
+		{
+			Debug.Log("종 이동 중..." + Input.GetAxisRaw("Vertical"));
+		}
 	}
 }
