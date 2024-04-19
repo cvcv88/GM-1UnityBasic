@@ -109,6 +109,23 @@ public class CSharpProgrammingBasic2 : MonoBehaviour
 			Debug.Log("용사는 " + monsters[index] + "에게 " + Battle(monsterLevel[index]));
 		}
 
+		// 8. 클래스
+		Actor player = new Actor(); // 클래스를 하나의 변수로 생성 -> 인스턴스화 (인스턴스 : 정의된 클래스를 변수 초기화로 실체화)
+		player.id = 0;
+		player.name = "김전사";
+		player.title = "짱센";
+		player.strength = 2.5f;
+		player.weapon = "몽둥이";
+		Debug.Log(player.Talk());
+		Debug.Log(player.HasWeapon());
+
+		player.LevelUp();
+		Debug.Log(player.name + "의 레벨은 " + player.level + "입니다.");
+
+		Player player2 = new Player(); // 오류 안남!
+		// Actor 클래스 : 부모 클래스 / Player 클래스 : 자식 클래스
+
+		Debug.Log(player2.Move());
 	}
 
 	// 7. 함수 (메소드) : 기능을 편리하게 사용하도록 구성된 영역
