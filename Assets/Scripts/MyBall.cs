@@ -45,4 +45,9 @@ public class MyBall : MonoBehaviour
 		if(other.name == "JumpCube")
 			rigid.AddForce(Vector3.up, ForceMode.Impulse);
 	}
+
+	public void Jump()
+	{
+		rigid.AddForce(Vector2.up * 5, ForceMode.Impulse);
+	}
 }
