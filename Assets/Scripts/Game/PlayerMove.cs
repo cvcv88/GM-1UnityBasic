@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
 	Rigidbody rigid;
+	AudioSource audio;
 
 	[SerializeField] float jumpPower;
 
@@ -14,6 +15,7 @@ public class PlayerMove : MonoBehaviour
 	private void Awake()
 	{
 		rigid = GetComponent<Rigidbody>();
+		audio = GetComponent<AudioSource>();
 		isJump = false;
 	}
 	private void Update()
@@ -34,7 +36,18 @@ public class PlayerMove : MonoBehaviour
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.layer == 6)
+		if (collision.gameObject.layer == 6) // Floor
 			isJump = false;
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.layer == 8) // Item
+		{
+			itemCount++;
+			audio.Play();
+			other.gameObject.SetActive(false);
+			// SetActive(bool) : 오브젝트 활성화 함수
+		}
 	}
 }
