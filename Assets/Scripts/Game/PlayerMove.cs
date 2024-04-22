@@ -50,14 +50,19 @@ public class PlayerMove : MonoBehaviour
 			audio.Play();
 			other.gameObject.SetActive(false);
 			// SetActive(bool) : 오브젝트 활성화 함수
+
+			gameManager.GetItem(itemCount);
 		}
 
-		if(other.gameObject.tag == "Finish")
+		if (other.gameObject.tag == "Finish")
 		{
-			if(itemCount == gameManager.totalItemCount)
+			if (itemCount == gameManager.totalItemCount)
 			{
 				// Game Clear!
-				SceneManager.LoadScene("GameScene" + (gameManager.stage + 1));
+				if (gameManager.stage == 1)
+					SceneManager.LoadScene("GameScene0");
+				else
+					SceneManager.LoadScene("GameScene" + (gameManager.stage + 1));
 			}
 			else
 			{
