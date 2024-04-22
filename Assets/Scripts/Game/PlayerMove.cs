@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerMove : MonoBehaviour
 	[SerializeField] float jumpPower;
 
 	public int itemCount;
+	public GameManager gameManager;
 
 	bool isJump;
 
@@ -48,6 +50,20 @@ public class PlayerMove : MonoBehaviour
 			audio.Play();
 			other.gameObject.SetActive(false);
 			// SetActive(bool) : 오브젝트 활성화 함수
+		}
+
+		if(other.gameObject.tag == "Finish")
+		{
+			if(itemCount == gameManager.totalItemCount)
+			{
+				// Game Clear!
+				SceneManager.LoadScene("GameScene" + (gameManager.stage + 1));
+			}
+			else
+			{
+				// Game Fail, Restart.
+				SceneManager.LoadScene("GameScene" + gameManager.stage); // 현재 Scene 재로딩
+			}
 		}
 	}
 }
